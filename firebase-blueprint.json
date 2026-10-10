@@ -1,0 +1,86 @@
+{
+  "entities": {
+    "ExperimentRun": {
+      "title": "ExperimentRun",
+      "description": "Recorded solver run with parameter configuration, runtime, solutions, and variance metrics.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the experiment run."
+        },
+        "name": {
+          "type": "string",
+          "description": "User label or auto-generated name for this benchmark run.",
+          "maxLength": 100
+        },
+        "notes": {
+          "type": "string",
+          "description": "Optional notes or test hypotheses.",
+          "maxLength": 500
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO timestamp when the run was recorded."
+        },
+        "runtimeMs": {
+          "type": "number",
+          "description": "Execution runtime in milliseconds."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["optimal", "feasible", "infeasible"],
+          "description": "Solver result status."
+        },
+        "config": {
+          "type": "object",
+          "description": "Solver configuration used for this run."
+        },
+        "floorRates": {
+          "type": "object",
+          "description": "Floor rates mapping used for this run."
+        },
+        "activeShopsCount": {
+          "type": "number",
+          "description": "Number of active shops included in this solve."
+        },
+        "totalArea": {
+          "type": "number",
+          "description": "Total area across all active shops."
+        },
+        "totalValue": {
+          "type": "number",
+          "description": "Total valuation across all active shops."
+        },
+        "targetAreaPerBucket": {
+          "type": "number",
+          "description": "Average area target per bucket."
+        },
+        "targetValuePerBucket": {
+          "type": "number",
+          "description": "Average value target per bucket."
+        },
+        "solutionsCount": {
+          "type": "number",
+          "description": "Number of solution sets produced."
+        },
+        "summary": {
+          "type": "object",
+          "description": "Top solution summary metrics including objective variance and aggregate deltas."
+        },
+        "solutions": {
+          "type": "array",
+          "description": "All generated bucket allocations and metrics."
+        }
+      },
+      "required": ["name", "createdAt", "runtimeMs", "status", "config", "solutions"]
+    }
+  },
+  "firestore": {
+    "/experiments/{experimentId}": {
+      "schema": "ExperimentRun",
+      "description": "Saved solver benchmark experiments and test runs."
+    }
+  }
+}

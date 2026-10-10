@@ -1,0 +1,6 @@
+{
+  "name": "Shop Allocation & 3D Floor Visualizer",
+  "description": "Composite shop allocation system across 7 buckets with interactive 2D schematic and 3D stacked floor plans, real-time solver, and variance analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
